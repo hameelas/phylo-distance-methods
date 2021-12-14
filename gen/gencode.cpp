@@ -107,26 +107,18 @@ bool add_edge(int u, int v) {
 	return true;
 }
 
-const int MAX_N = 2000;
-int deg[MAX_N];
-int mark[MAX_N];
-vector <int> g[MAX_N];
-
-void dfs(int x) {
-	mark[x] = true;
-	for (auto y : 
-}
-
 int main(int argc, char **argv) {
 	ios_base::sync_with_stdio(false); cin.tie(0);
 	registerGen(argc, argv);
 
 	argc = argc;
-	int n = atoi(argv[1]);
-	string type = string(argv[2]);
+	int q = atoi(argv[1]);
+	int n = atoi(argv[2]);
+	int m = atoi(argv[3]);
+	string type = string(argv[4]);
 	int p;
-	if(type!="normal" && type!="sqrt") p = atoi(argv[3]);
-    cout << "wrslcnopzlckvxbnair_input_phylo_lmncvpisadngpiqdfngslcnvd" << endl;
+	if(type!="normal" && type!="sqrt") p = atoi(argv[5]);
+    cout << "wrslcnopzlckvxbnair_input_simurgh_lmncvpisadngpiqdfngslcnvd" << endl;
 
 	vector<pii> tree;
 	if(type == "normal")	tree = tree_normal(n);
@@ -142,29 +134,66 @@ int main(int argc, char **argv) {
 	rep(i, n-1) add_edge(tree[i].X, tree[i].Y);
 	shuffle(all(edges));
 
-	vector <int> leaves;
-	rep(i, n-1) deg[edges[i].X]++, deg[edges[i].Y]++;
-	rep(i, n) if (deg[i] == 1) leaves[i].push_back(i);
 
-	int m = (int)leaves.size();
-	vector <vector <int> > mat;
-	for (int i = 0; i < m; i++) {
-		dfs(i);
-		mat.push_back(vector<int>(m, 0));
-		for (int j = 0; j < m; j++) {
-			mat[i][j] = dist[j];
+	vector<pair<int,int> > graph;
+	graph.clear();
+	for(pii e: edges)graph.push_back(e);
+	if(m<n*(n-1)/2){
+		for(int i=1;i<=m-n+1;i++){
+			while(true){
+				int u=rnd.next(0,n-1);
+				int v=rnd.next(0,n-1);
+				if(u>v)swap(u,v);
+				if(u!=v && se.find(pii(u,v)) == se.end()){
+					se.insert(pii(u,v));
+					if(rnd.next(0,1))graph.push_back(pii(u,v));
+					else graph.push_back(pii(v,u));
+					break;
+				}
+			}
 		}
 	}
-
-	cout << n << endl;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
-			cout << mat[i][j] << ' ';
+	else{
+		for(int i=1;i<=n*(n-1)/2 - m;i++){
+			while(true){
+				int u=rnd.next(0,n-1);
+				int v=rnd.next(0,n-1);
+				if(u>v)swap(u,v);
+				if(u!=v && se.find(pii(u,v)) == se.end()){
+					se.insert(pii(u,v));
+					break;
+				}
+			}
 		}
-		cout << endl;
+		for(int i=0;i<n;i++){
+			for(int j=i+1;j<n;j++){
+				if(se.find(pii(i,j)) == se.end()){
+					if(rnd.next(0,1))graph.push_back(pii(i,j));
+					else graph.push_back(pii(j,i));
+				}
+			}
+		}
 	}
-
+	shuffle(all(graph));
+	cout<<n<<" "<<m<<" "<<q<<endl;
+	for(int i=0;i<m;i++){
+		cout<<graph[i].X<<" "<<graph[i].Y<<endl;
+	}
+	vector<int> index;
+	index.clear();
+	for(int i=0;i<m;i++){
+		int u=graph[i].X;
+		int v=graph[i].Y;
+		if(u>v)swap(u,v);
+		if(tt.find(pii(u,v)) != tt.end()){
+			index.push_back(i);
+		}
+	}
+	shuffle(all(index));
+	for(int i=0;i<n-1;i++){
+		cout<<index[i];
+		if(i!=n-2)cout<<" ";
+	}
+	cout<<endl;
 	return 0;
 }
-
-
