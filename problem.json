@@ -1,0 +1,9 @@
+{
+	"name": "phylo-distance",
+	"code": "phylo-distance",
+	"title": "Phylogenetic Distance Methods",
+	"type": "OutputOnly",
+	"time_limit": 100.0,
+	"memory_limit": 256,
+	"description": "benchmark"
+}

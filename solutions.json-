@@ -1,0 +1,10 @@
+{
+	"rapidnj.cpp": {"verdict": "model_solution"},
+	"fastme.cpp": {"verdict": "correct"},
+	"fastnj.cpp": {"verdict": "correct"},
+	"quickjoin.cpp": {"verdict": "correct"},
+	"quicktree.c": {"verdict": "correct"},
+	"clearcut.c": {"verdict": "correct"},
+	"decoupled-rows.cpp": {"verdict": "correct"},
+	"naive.cpp": {"verdict": "partially_correct"}
+}
