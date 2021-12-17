@@ -73,6 +73,19 @@ vector<pii> tree_normal(int n) {
 	return e;
 }
 
+vector<pii> tree_caterpillar(int n) {
+	vector<pii> e; e.reserve(n-1);
+	int s = (n+1)/2;
+	for (int i = 1; i <= s; i++) {
+		e.pb(pii(i, i-1));
+	}
+	
+	for (int i = s + 1, j = 1; i < n; i++, j++) {
+		e.pb(pii(i, j));
+	}
+	return e;
+}
+
 vector<pii> tree_knary(int n, int k) {
 	smax(k, 1); smin(k, n-1);
 	vector<pii> e; e.reserve(n-1);
@@ -110,13 +123,15 @@ bool add_edge(int u, int v) {
 }
 
 const int MAX_N = 2000;
-int deg[MAX_N];
-int mark[MAX_N];
+int deg[MAX_N], dist[MAX_N], mark[MAX_N];
 vector <int> g[MAX_N];
 
 void dfs(int x) {
 	mark[x] = true;
-	for (auto y : 
+	for (auto y : g[x]) if (!mark[y]) {
+		dist[y] = dist[x] + 1;
+		dfs(y);
+	}
 }
 
 int main(int argc, char **argv) {
@@ -127,7 +142,7 @@ int main(int argc, char **argv) {
 	int n = atoi(argv[1]);
 	string type = string(argv[2]);
 	int p;
-	if(type!="normal" && type!="sqrt") p = atoi(argv[3]);
+	if(type!="normal" && type!="sqrt" && type!="caterpillar") p = atoi(argv[3]);
     cout << "wrslcnopzlckvxbnair_input_phylo_lmncvpisadngpiqdfngslcnvd" << endl;
 
 	vector<pii> tree;
@@ -137,6 +152,8 @@ int main(int argc, char **argv) {
 	if(type == "long")		tree = tree_long(n, p);
 	if(type == "sqrt")      tree = tree_sqrt(n);
 	if(type == "knary") 	tree = tree_knary(n, p);
+	if(type == "binary") 	tree = tree_knary(n, 2);
+	if(type == "caterpillar") 	tree = tree_caterpillar(n);
 
 
 	for(int i=0;i<n;i++)perm.push_back(i);
@@ -145,22 +162,28 @@ int main(int argc, char **argv) {
 	shuffle(all(edges));
 
 	vector <int> leaves;
-	rep(i, n-1) deg[edges[i].X]++, deg[edges[i].Y]++;
-	rep(i, n) if (deg[i] == 1) leaves[i].push_back(i);
+	rep(i, n-1) {
+		g[edges[i].X].push_back(edges[i].Y);
+		g[edges[i].Y].push_back(edges[i].X);
+	}
+	rep(i, n) if ((int)g[i].size() == 1) leaves.push_back(i);
 
 	int m = (int)leaves.size();
 	vector <vector <int> > mat;
 	for (int i = 0; i < m; i++) {
-		dfs(i);
+		memset(mark, 0, sizeof mark);
+		memset(dist, 0, sizeof dist);
+		dfs(leaves[i]);
 		mat.push_back(vector<int>(m, 0));
 		for (int j = 0; j < m; j++) {
-			mat[i][j] = dist[j];
+			mat[i][j] = dist[leaves[j]];
 		}
 	}
 
-	cout << n << endl;
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < n; j++) {
+	cout << m << endl;
+	for (int i = 0; i < m; i++) {
+		cout << i << ' ';
+		for (int j = 0; j < m; j++) {
 			cout << mat[i][j] << ' ';
 		}
 		cout << endl;
