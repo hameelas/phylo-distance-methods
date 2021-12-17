@@ -1,0 +1,2 @@
+python newick2matrix.py -i test.tre -o testout
+./clearcut --in=../testout --out=clearcutout -d
