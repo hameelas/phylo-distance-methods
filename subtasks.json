@@ -1,6 +1,5 @@
 {
     "global_validators": ["validator.cpp"],
-    "subtask_sensitive_validators": ["subtask-val.cpp --group {subtask}"],
     "subtasks": {
           "samples": {
                "index": 0,
