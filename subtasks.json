@@ -6,25 +6,31 @@
                "score": 0,
                 "validators": []
           },
-          "binary": {
+          "yule-deep": {
                 "index": 1,
                 "score": 20,
                 "validators": []
           },
-          "caterpillar": {
+          "yule-recent": {
                 "index": 2,
                 "score": 20,
                 "validators": []
           },
-          "yule": {
+          "coalescent-low": {
                 "index": 3,
-                "score": 30,
+                "score": 20,
                 "validators": []
           },
-          "coalescent": {
+          "coalescent-medium": {
                 "index": 4,
-                "score": 30,
+                "score": 20,
+                "validators": []
+          },
+		  "coalescent-high": {
+                "index": 5,
+                "score": 20,
                 "validators": []
           }
+
     }
 }
