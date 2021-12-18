@@ -1,0 +1,31 @@
+{
+    "global_validators": ["validator.cpp"],
+    "subtask_sensitive_validators": ["subtask-val.cpp --group {subtask}"],
+    "subtasks": {
+          "samples": {
+               "index": 0,
+               "score": 0,
+                "validators": []
+          },
+          "binary": {
+                "index": 1,
+                "score": 20,
+                "validators": []
+          },
+          "caterpillar": {
+                "index": 2,
+                "score": 20,
+                "validators": []
+          },
+          "yule": {
+                "index": 3,
+                "score": 30,
+                "validators": []
+          },
+          "coalescent": {
+                "index": 4,
+                "score": 30,
+                "validators": []
+          }
+    }
+}
