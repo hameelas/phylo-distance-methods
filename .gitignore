@@ -1,5 +1,8 @@
 .idea/
-
+decoupled-rows/
+logs/
+sandbox/
+tests/
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,macos,pycharm,vim
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,macos,pycharm,vim
