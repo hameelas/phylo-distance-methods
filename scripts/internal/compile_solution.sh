@@ -108,6 +108,9 @@ elif [ "${ext}" == "py" ] ; then
 elif [ "${ext}" == "py2" ] ; then
 	vecho "Detected language: Python2"
 	LANG="py2"
+elif [ "${ext}" == "sh" ]; then
+	vecho "Detected language: Shell"
+	LANG="sh"
 else
 	error_exit 1 "Unknown solution extension: ${ext}"
 fi
@@ -345,6 +348,22 @@ elif is_in "${LANG}" "py" "py2" ; then
 	else
 		vecho "Static type checker '${static_type_checker}' is not available."
 	fi
+elif [ "${LANG}" == "sh" ] ; then
+	SH_CMD="bash"
+	files_to_compile=("")
+	if "${HAS_GRADER}"; then
+		grader_py="${GRADER_NAME}.py"
+		vecho "Copying '${grader_py}' to sandbox..."
+		vrun cp "${GRADER_LANG_DIR}/${grader_py}" "."
+		files_to_compile+=("${grader_py}")
+		MAIN_FILE_NAME="${GRADER_NAME}"
+	else
+		MAIN_FILE_NAME="${PROBLEM_NAME}"
+	fi
+	# vecho "files_to_compile: ${files_to_compile[@]}"
+	# vecho "Compiling python sources..."
+	# capture_compile echo "Running py_compile..."
+	# vrun capture_compile "${PYTHON_CMD}" -m py_compile "${MAIN_FILE_NAME}.py"
 else
 	error_exit 5 "Illegal state; unknown language: ${LANG}"
 fi
@@ -364,6 +383,12 @@ function replace_tokens {
 	fi
 	if variable_exists "PYTHON_CMD" ; then
 		vrun sed -i.bak -e "s/PYTHON_CMD_PLACE_HOLDER/${PYTHON_CMD}/g" "${the_file}"
+	fi
+	echo "salam ${SH_CMD}"
+	if variable_exists "SH_CMD" ; then
+		echo "WOW ${the_file}"
+		vrun sed -i.bak -e "s/SHELL_CMD_PLACE_HOLDER/${SH_CMD}/g" "${the_file}"
+		echo "DAMN"
 	fi
 	if variable_exists "NUM_SOL_PROCESSES" ; then
 		vrun sed -i.bak -e "s/NUM_SOL_PROCESSES_PLACE_HOLDER/${NUM_SOL_PROCESSES}/g" "${the_file}"
