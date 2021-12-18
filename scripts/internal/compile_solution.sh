@@ -190,6 +190,7 @@ else
 	vecho "Pre-compilation hook file '${PRE_COMPILE}' is not present. Nothing to do before compiling."
 fi
 
+export LANG=${LANG}
 
 if [ "${LANG}" == "cpp" ] ; then
 	variable_exists "CPP_STD_OPT" || CPP_STD_OPT="--std=gnu++14"

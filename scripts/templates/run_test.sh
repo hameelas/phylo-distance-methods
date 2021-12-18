@@ -28,5 +28,8 @@ fi
 # Using ${sol_run_args[@]+"${sol_run_args[@]}"} instead of "${sol_run_args[@]}" because
 #   simple usage of empty arrays causes unbound variable error in old versions of bash with 'set -u'.
 
-bash "${SCRIPTS}/run.sh" ${sol_run_args[@]+"${sol_run_args[@]}"} < "${input}" > "${sol_stdout}" 2> "${sol_stderr}"
+export INPUT=${input}
+export OUTPUT=${sol_stdout}
+# bash "${SCRIPTS}/run.sh" ${sol_run_args[@]+"${sol_run_args[@]}"} < "${input}" > "${sol_stdout}" 2> "${sol_stderr}"
+bash "${SCRIPTS}/run.sh" ${sol_run_args[@]+"${sol_run_args[@]}"} > "${sol_stderr}" 2>&1
 

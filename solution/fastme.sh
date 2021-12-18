@@ -1,1 +1,2 @@
-fastme -i ~/workspace/erin/phylo_distance_methods/data-for-hamed/testout -o fastme-tree
+echo fastme -i ${INPUT} -o ${OUTPUT}
+fastme -i ${INPUT} -o ${OUTPUT}

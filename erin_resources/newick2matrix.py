@@ -70,7 +70,7 @@ def write_phylip(dmat, taxa, f):
     for i, x in enumerate(taxa):
         f.write("%s" % x)
         for j in range(ntax):
-            f.write(" %1.12f" % dmat[i, j])
+            f.write(" %1.4f" % dmat[i, j])
         f.write("\n")
 
 

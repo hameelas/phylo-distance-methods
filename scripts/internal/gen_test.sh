@@ -70,8 +70,11 @@ function gen_output {
 		return 4
 	fi
 	temp_output=${output}.tmp
-	bash "${SCRIPTS}/run.sh" < "${input}" > "${temp_output}" || return $?
-	mv "${temp_output}" "${output}"
+	export INPUT=${input}
+	export OUTPUT=${output}
+	# bash "${SCRIPTS}/run.sh" < "${input}" > "${temp_output}" || return $?
+	bash "${SCRIPTS}/run.sh" > "${temp_output}"  || return $?
+	# mv "${temp_output}" "${output}"
 }
 
 function validate {
