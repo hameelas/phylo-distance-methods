@@ -6,7 +6,6 @@
 using namespace std;
 
 const int MAX_N = 2000;
-const int K = 50;
 const double INF = 1e18;
 
 typedef pair<int, int> node_pair;
@@ -26,8 +25,8 @@ node_pair normalize(node_pair join_pair) {
 	return join_pair;
 }
 
-double calc_cost(int n, int i, int j) {
-	return (n - 2) * d[i][j] - rowsum[i] - rowsum[j]; 
+double calc_cost(int nn, int i, int j) {
+	return (nn - 2) * d[i][j] - rowsum[i] - rowsum[j]; 
 }
 
 void initialize() {
@@ -129,7 +128,7 @@ int main() {
 	
 	int next_node = n;
 	for (int x = n; x > 3; x--) {
-		pair<int, int> join_pair = find_min_coor(x), new_node_pair;
+		pair<int, int> join_pair = find_min_coor(x);
 		join_nodes (x, join_pair.first, join_pair.second, next_node);
 		visible.erase (normalize(join_pair));
 		visible.insert (normalize(node_pair(vis_node[next_node], next_node)));

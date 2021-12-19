@@ -1,7 +1,7 @@
 {
 	"fastnj.cpp" : {"verdict": "correct"},
-	"rapidnj.sh" : {"verdict": "correct"},
-	"fastme.sh" : {"verdict": "model_solution"},
+	"rapidnj.sh" : {"verdict": "model_solution"},
+	"fastme.sh" : {"verdict": "correct"},
 	"clearcut.sh" : {"verdict": "correct"},
 	"quicktree.sh" : {"verdict": "correct"},
 	"decoupled-rows.cpp": {"verdict": "incorrect"}

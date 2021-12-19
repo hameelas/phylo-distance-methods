@@ -1,2 +1,0 @@
-python newick2matrix.py -i test.tre -o testout
-./rapidnj testout -i pd
