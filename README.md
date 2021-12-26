@@ -5,15 +5,26 @@ This is a framework for straight-forward phylogeny tree estimation benchmarking.
 It is built on top of [**Task Preparation System (`tps`)**](https://github.com/ioi-2017/tps) 
 engine which is originally desinged for preparing programming problems.
 
-## Set Up
+The input data, which is a matrix representing the distance between each pair of species,
+is assumed of [PHYLIP Format](https://mothur.org/wiki/phylip-formatted_distance_matrix/).
+We use the python script `erin_resources/newick2matrix.py` provided by Prof. Erin Molloy
+to convert the generated input trees into a distance matrix.
+
+The output data, which is an estimated evolutionary of the taxa given in input,
+uses [Newick Format](https://en.wikipedia.org/wiki/Newick_format) for representing
+the guessed trees.
+
+All the distance methods included in this repository are written in `C/C++` which
+ensures there is no language-dependent biases in the calculated running time.
+
+
+## Generating Test Data
 
 First make sure you have installed `tps` on your computer. To install `tps`,
 follow the instructions in [this page](https://github.com/ioi-2017/tps#installation).
 Then, you can run the following command to generate the test cases:
 
     tps gen
-    
-## Generating Test Data
 
 This commands generates tests based on the `data` file inside `gen` directory.
 To see or modify the the details of the generated test data, check out the following file:
@@ -27,12 +38,12 @@ using the following command:
 
     tps invoke <solution-name>
     
-## Third-Part Libraries
+## Third-Party Libraries
 
 The following distance methods are shipped by the repository by default. The packages
 used to run these methods can be found in the `third-party` directory. In this project,
 we add `bash` script support for solutions and the respective scripts for running
-each third-part method can be found in `solution` directory.
+each third-party method can be found in `solution` directory.
 
 - RapidNJ: [https://github.com/somme89/rapidNJ](https://github.com/somme89/rapidNJ)
 
