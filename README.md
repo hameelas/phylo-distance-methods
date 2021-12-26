@@ -36,41 +36,42 @@ each third-part method can be found in `solution` directory.
 
 - RapidNJ: [https://github.com/somme89/rapidNJ](https://github.com/somme89/rapidNJ)
 
-    cd third-party/rapidnj
-    make
+        cd third-party/rapidnj
+        make
 
 - FastME: [https://gite.lirmm.fr/atgc/FastME/](https://gite.lirmm.fr/atgc/FastME/)
+
+        cd third-party/fastme
+        ./configure
+        make
+        sudo make install
 
 This library unlike other third-party libraries is on a local gitlab, but a snapshot of
 this repository (accessible from the above link) is included in this project.
 
-    cd third-party/fastme
-    ./configure
-    make
-    sudo make install
 
 - ClearCut: [https://github.com/sheneman/clearcut](https://github.com/sheneman/clearcut)
 
-    cd third-party/clearcut
-    make
+        cd third-party/clearcut
+        make
 
 - QuickTree: [https://github.com/khowe/quicktree](https://github.com/khowe/quicktree)
 
-    cd third-party/quicktree
-    make
+        cd third-party/quicktree
+        make
 
 We also use other third party libraries which are listed below:
 
 - Misc: [Required Python Packages]
 
-    pip install numpy
-    pip install psutil
-    pip install treeswift
-    pip install matplotlib
+        pip install numpy
+        pip install psutil
+        pip install treeswift
+        pip install matplotlib
 
 - TPS: [https://github.com/ioi-2017/tps](https://github.com/ioi-2017/tps) 
 
-    sudo source install-tps.sh
+        sudo source install-tps.sh
 
 > A collection of tree generators designed for enforcing usual edge cases in tree problems
 due to [Mohammad Reza Maleki](https://github.com/mruxim) is included in this project. 
