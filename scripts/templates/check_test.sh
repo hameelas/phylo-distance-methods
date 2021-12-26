@@ -4,6 +4,8 @@
 
 set -euo pipefail
 
+source "${INTERNALS}/problem_util.sh"
+
 # Testcase name (provided to be used, just in case!)
 test_name="$1"
 
@@ -19,8 +21,10 @@ sol_stdout="$4"
 # Location of solution standard error file
 sol_stderr="$5"
 
+checker_command="$(get_checker)"
+
 if "${HAS_CHECKER}"; then
-	"${CHECKER_DIR}/checker.exe" "${input}" "${judge_answer}" "${sol_stdout}"
+	"${CHECKER_DIR}/${checker_command}" "${input}" "${judge_answer}" "${sol_stdout}"
 	# Not using test_name & sol_stderr
 elif "${HAS_MANAGER}"; then
 	# If there is no checker, then the manager outputs should be in the format of checker outputs.

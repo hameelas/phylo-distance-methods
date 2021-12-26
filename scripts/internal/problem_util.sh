@@ -16,6 +16,9 @@ function get_test_validators {
 	"${PYTHON}" "${INTERNALS}/get_test_validators.py" "${test_name}" "${tests_dir}"
 }
 
+function get_checker {
+	"${PYTHON}" "${INTERNALS}/get_checker.py"
+}
 
 function get_test_validator_commands {
 	tests_dir="$1"; shift

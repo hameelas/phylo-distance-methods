@@ -1,0 +1,13 @@
+[submodule "third-party/quicktree"]
+	path = third-party/quicktree
+	url = https://github.com/khowe/quicktree
+
+[submodule "third-party/clearcut"]
+	path = third-party/clearcut
+	url = https://github.com/sheneman/clearcut
+[submodule "third-party/rapidNJ"]
+	path = third-party/rapidNJ
+	url = https://github.com/somme89/rapidNJ
+[submodule "third-party/fastmulrfs"]
+	path = third-party/fastmulrfs
+	url = https://github.com/ekmolloy/fastmulrfs/
