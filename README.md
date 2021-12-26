@@ -43,7 +43,11 @@ using the following command:
 The following distance methods are shipped by the repository by default. The packages
 used to run these methods can be found in the `third-party` directory. In this project,
 we add `bash` script support for solutions and the respective scripts for running
-each third-party method can be found in `solution` directory.
+each third-party method can be found in `solution` directory. Before compiling the third-party
+libraries, you first need to populate their submodules.
+
+    git submodule init
+    git submodule update
 
 - RapidNJ: [https://github.com/somme89/rapidNJ](https://github.com/somme89/rapidNJ)
 
