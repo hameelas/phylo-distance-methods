@@ -10,3 +10,6 @@
 [submodule "third-party/fastmulrfs"]
 	path = third-party/fastmulrfs
 	url = https://github.com/ekmolloy/fastmulrfs/
+[submodule "third-party/tps"]
+	path = third-party/tps
+	url = https://github.com/ioi-2017/tps

@@ -122,3 +122,23 @@ in `results` directory, use the following command:
 To modify the list of experiments shown in the resulting plot, edit the variable
 named [`methods`](https://github.com/hameelas/phylo-distance-methods/blob/f1620e666a0c3fbc62b93b2a56162c09394056a3/scripts/plot.py#L8)
 in `scripts/plot.py`. To add a new script to `tps` you only need to put it in `scripts` directory (`python` and `bash` are supported).
+
+## Generating Tests on M1 Processors using Docker
+
+Since RapidNJ is written for amd64 architectures, you may have issues compiling RapidNJ on M1 processors. 
+It is possible to use the `buildx` feature of docker to emulate amd64 codes using qemu virtualizer.
+Thus, you can use the following commands to generate the test since the default model solution
+is set to RapidNJ. You can alternatively change the model solution (which is used to generate
+test outputs) in `solutions.json`.
+
+> You need to run following commands in the root directory of this project. Additionally, you need to
+create a qemu container for emulating amd64 codes.
+
+    export DOCKER_BUILDKIT=1
+    docker buildx create --use --name=qemu
+    docker buildx inspect --bootstrap
+
+
+    docker build --platform linux/amd64 --tag darlene .
+    docker rm <container-name> && docker create --platform linux/amd64 --name <container-name> darlene
+    docker run --platform linux/amd64 -t -i darlene "tps gen"
