@@ -1,1 +1,1 @@
-../solution/fastnj.exe < ${INPUT} > ${OUTPUT}
+./solution/fastnj.exe < ${INPUT} > ${OUTPUT}

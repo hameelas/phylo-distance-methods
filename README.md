@@ -138,6 +138,7 @@ create a qemu container for emulating amd64 codes.
     docker buildx create --use --name=qemu
     docker buildx inspect --bootstrap
 
+Then, you can generate the test cases as following.
 
     docker build --platform linux/amd64 --tag darlene .
     docker rm <container-name> && docker create --platform linux/amd64 --name <container-name> darlene

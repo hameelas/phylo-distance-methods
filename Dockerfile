@@ -10,31 +10,38 @@ WORKDIR /data
 COPY requirements.txt  requirements.txt
 RUN pip install -r requirements.txt
 
-WORKDIR /data/thrid-party/tps
+WORKDIR /data/third-party/tps
 COPY third-party/tps/ .
 RUN ./install-tps.sh
 
-WORKDIR /data/thrid-party/FastME-master
+WORKDIR /data/third-party/FastME-master
 COPY third-party/FastME-master/ .
 RUN autoreconf -f -i
 RUN ./configure
 RUN make
 RUN make install
 
-WORKDIR /data/thrid-party/clearcut
+WORKDIR /data/third-party/clearcut
 COPY third-party/clearcut/ .
 RUN make
 
-WORKDIR /data/thrid-party/quicktree
+WORKDIR /data/third-party/quicktree
 COPY third-party/quicktree/ .
 RUN make
 
-WORKDIR /data/thrid-party/rapidnj
+WORKDIR /data/third-party/rapidnj
 COPY third-party/rapidnj/ .
 RUN make
 
 WORKDIR /data
 
-COPY . .
+COPY checker/ checker/
+COPY erin_resources/ erin_resources/
+COPY gen/ gen/
+# COPY results .
+COPY scripts/ scripts/
+COPY solution/ solution/
+COPY validator/ validator/
+COPY *.json .
 
 CMD [ "bash" ]
