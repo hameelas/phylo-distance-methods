@@ -14,6 +14,7 @@ sol_stderr="${SANDBOX}/${test_name}.err"
 
 export INPUT="${input}"
 export OUTPUT="${sol_stdout}"
+export THIRDPARTY="${BASE_DIR}/third-party"
 
 function run_solution {
 	tlog_file="$(job_tlog_file "${sol_job}")"

@@ -1,1 +1,1 @@
-./solution/fastnj.exe < ${INPUT} > ${OUTPUT}
+${THIRDPARTY}/../solution/fastnj.exe < ${INPUT} > ${OUTPUT}

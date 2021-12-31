@@ -1,5 +1,5 @@
 # phylo-distance-methods
-An Empirical Study of the Distance Methods for Estimating Evolutionary Trees
+**An Empirical Study of the Distance Methods for Estimating Evolutionary Trees**
 
 This is a framework for straight-forward phylogeny tree estimation benchmarking. 
 It is built on top of [**Task Preparation System (`tps`)**](https://github.com/ioi-2017/tps) 
@@ -36,7 +36,7 @@ To see or modify the the details of the generated test data, check out the follo
 You can invoke the solutions inside `solution` directiry including existing distance methods 
 using the following command:
 
-    tps invoke <solution-name>
+    tps invoke <solution-path>
     
 ## Third-Party Libraries
 
@@ -48,6 +48,8 @@ libraries, you first need to populate their submodules.
 
     git submodule init
     git submodule update
+
+### Distance Methods
 
 - RapidNJ: [https://github.com/somme89/rapidNJ](https://github.com/somme89/rapidNJ)
 
@@ -70,19 +72,34 @@ this repository (accessible from the above link) is included in this project.
         cd third-party/clearcut
         make
 
+Since ClearCut code doesn't accept numerical labels for taxa, we created a tps script called
+`fix-clearcut` that generates compatible data for ClearCut. New files have `.cc` extension, and
+for example the test `01.in` will be converted to `01.in.cc`. This script needs to be called
+after generating the data set in `tests` directory.
+
+        tps fix-clearcut
+
 - QuickTree: [https://github.com/khowe/quicktree](https://github.com/khowe/quicktree)
 
         cd third-party/quicktree
         make
 
+### Measuring the Error
+
+- fastmulrfs: [https://github.com/ekmolloy/fastmulrfs/](https://github.com/ekmolloy/fastmulrfs/)
+
+We use this repository for comparing two trees using the RF-distance method. This repository is
+created by Prof. [Erin Molloy](https://github.com/ekmolloy). The default checker (RF-distance)
+can be modified by changing the `global-checker` field in `subtasks.json`. The bash script
+that uses this third-party library can be found at `checker/check-rf-distance.sh`.
+
+### Other Libraries
+
 We also use other third party libraries which are listed below:
 
 - Misc: [Required Python Packages]
 
-        pip install numpy
-        pip install psutil
-        pip install treeswift
-        pip install matplotlib
+        pip install -r requirements.txt
 
 - TPS: [https://github.com/ioi-2017/tps](https://github.com/ioi-2017/tps) 
 
@@ -94,17 +111,6 @@ This tool is publicly available inside the `tps` repository
 ([the code](https://github.com/ioi-2017/tps/blob/master/samples/Batch/simurgh/gen/gencode.cpp)).
 The are currently no results available on this dataset (TBD).
 
-## Measuring the Error
-
-- fastmulrfs: [https://github.com/ekmolloy/fastmulrfs/](https://github.com/ekmolloy/fastmulrfs/)
-
-We use this repository for comparing two trees using the RF-distance method. This repository is
-created by Prof. [Erin Molloy](https://github.com/ekmolloy). The default checker (RF-distance)
-can be modified by changing the `global-checker` field in `subtasks.json`. The bash script
-that uses this third-party library can be found at `checker/check-rf-distance.sh`.
-
-    pip install dendropy
-
 ## Plotting the Results
 
 To create plots for the result of an experiments, you first need to invoke each solution on
@@ -112,7 +118,7 @@ the generated test data. After running a solution, you need to run the following
 to collect the running time statistics of the most recent invokation, and store it in
 `results` directory:
 
-    tps collect-times <experiment-name>
+    tps collect-stat <experiment-name>
     
 To see a plot for a specific experiment, for which a file exist with the same name
 in `results` directory, use the following command:
@@ -142,4 +148,11 @@ Then, you can generate the test cases as following.
 
     docker build --platform linux/amd64 --tag darlene .
     docker rm <container-name> && docker create --platform linux/amd64 --name <container-name> darlene
-    docker run --platform linux/amd64 -t -i darlene "tps gen"
+
+or
+    docker build --platform linux/amd64 --tag darlene .
+    docker run --platform linux/amd64 -t -i darlene "bash"
+    (container)$ tps gen
+
+> Note: Comparing the running times of invokations that happen inside the qemu emulator and invokations that
+happen on the host system is not recommended.

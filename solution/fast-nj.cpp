@@ -129,7 +129,7 @@ void find_newick (int v) {
 			newick += ",";
 		}
 	}
-	newick += ");";
+	newick += ")";
 }
 
 int main() {
@@ -169,7 +169,7 @@ int main() {
 	}
 
 	find_newick(next_node);
-	cout << newick << endl;
+	cout << newick << ";" << endl;
 
 	return 0;
 }

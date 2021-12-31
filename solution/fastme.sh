@@ -1,2 +1,1 @@
-echo fastme -i ${INPUT} -o ${OUTPUT}
-fastme -i ${INPUT} -o ${OUTPUT}
+fastme -q -i ${INPUT} -o ${OUTPUT}
