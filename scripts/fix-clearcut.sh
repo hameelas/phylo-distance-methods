@@ -15,5 +15,5 @@ done
 
 for output in $(ls tests/*.out); do
 	echo "out ${output}"
-	python -c "" < ${output} > ${output}.cc
+	python -c "print('salam')" < ${output} > ${output}.cc
 done

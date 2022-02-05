@@ -4,8 +4,8 @@ import random
 import collections
 
 
-# methods = [ "rapidnj", "fastme", "clearcut", "quicktree", "fast-nj"]
-methods = ["rapidnj", "fastme", "clearcut", "quicktree" ]
+methods = [ "rapidnj", "fastme", "clearcut", "quicktree", "fast-nj"]
+
 
 
 buckets = {}
