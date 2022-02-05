@@ -29,10 +29,33 @@ double calc_cost(int nn, int i, int j) {
 	return (nn - 2) * d[i][j] - rowsum[i] - rowsum[j]; 
 }
 
+void build_visible_set(int nn) {
+	for (int i = 0; i < 2 * n; i++) if (active[i]) {
+		rowsum[i] = 0;
+		for (int j = 0; j < 2 * n; j++) if (active[j]) {
+			rowsum[i] += d[i][j];
+		}
+	}
+
+	visible.clear();
+
+	for (int i = 0; i < 2 * n; i++) if (active[i]) {
+		int min_cost = INF;
+		for (int j = 0; j < 2 * n; j++) if (i != j and active[j]) {
+			double cost = calc_cost(nn, i, j);
+			if (min_cost > cost) {
+				vis_node[i] = j;
+				min_cost = cost;
+			}
+		}
+		visible.insert(normalize(node_pair(i, vis_node[i])));
+	}
+}
+
 void initialize() {
 	cin >> n;
 	for (int i = n; i < 2 * n; i++) {
-		stringstream ss; ss << i + 100;
+		stringstream ss; ss << i;
 		string x; ss >> x;
 		labels[i] = x;
 	}
@@ -41,21 +64,10 @@ void initialize() {
 		cin >> labels[i];
 		for (int j = 0; j < n; j++) {
 			cin >> d[i][j];
-			rowsum[i] += d[i][j];
 		}
 	}
 
-	for (int i = 0; i < n; i++) {
-		int min_cost = INF;
-		for (int j = 0; j < n; j++) if (i != j) {
-			double cost = calc_cost(n, i, j);
-			if (min_cost > cost) {
-				vis_node[i] = j;
-				min_cost = cost;
-			}
-		}
-		visible.insert(normalize(node_pair(i, vis_node[i])));
-	}
+	build_visible_set(n);
 }
 
 pair<int, int> find_min_coor(int nn) {
@@ -137,7 +149,12 @@ int main() {
 	initialize();
 	
 	int next_node = n;
+	//int K = cbrt(n);
+	int K = 100;
 	for (int x = n; x > 3; x--) {
+		if (x % K == 0 || x < K) {
+			build_visible_set(x);
+		}
 		pair<int, int> join_pair = find_min_coor(x);
 		join_nodes (x, join_pair.first, join_pair.second, next_node);
 		visible.erase (normalize(join_pair));

@@ -24,7 +24,7 @@ node_pair normalize(node_pair join_pair) {
 }
 
 double calc_cost(int nn, int i, int j) {
-	cerr << nn << ' ' << labels[i] << " -> " << labels[j] << ' ' << d[i][j] << ' ' << rowsum[i] << ' ' << rowsum[j] << ' ' << (nn - 2) * d[i][j] - rowsum[i] - rowsum[j] << endl;
+	//cerr << nn << ' ' << labels[i] << " -> " << labels[j] << ' ' << d[i][j] << ' ' << rowsum[i] << ' ' << rowsum[j] << ' ' << (nn - 2) * d[i][j] - rowsum[i] - rowsum[j] << endl;
 	return (nn - 2) * d[i][j] - rowsum[i] - rowsum[j]; 
 }
 
@@ -53,7 +53,7 @@ pair<int, int> find_min_coor_naive(int nn) {
 		for (int y = 0; y < x; y++) if (active[y]) {
 			double cost = calc_cost(nn, x, y);
 			if (nn == 4) {
-				cerr << x << ' ' << y << ' ' << cost << ' ' << d[x][y] << endl;
+				//cerr << x << ' ' << y << ' ' << cost << ' ' << d[x][y] << endl;
 			}
 			if (min_cost > cost) {
 				min_cost = cost;
@@ -61,7 +61,7 @@ pair<int, int> find_min_coor_naive(int nn) {
 			}
 		}
 	}
-	cerr << min_cost << ' ' << INF << ' ' << min_coor.first << ' ' << min_coor.second << endl;
+	//cerr << min_cost << ' ' << INF << ' ' << min_coor.first << ' ' << min_coor.second << endl;
 	return min_coor;
 }
 
@@ -119,8 +119,8 @@ int main() {
 	int next_node = n;
 	for (int x = n; x > 3; x--) {
 		pair<int, int> join_pair = find_min_coor_naive(x);
-		cerr << x << "/" << n << ' ' << labels[join_pair.first] << '=' << labels[join_pair.second] << 
-			' ' << next_node << '\t' << active_string() << endl << endl;
+		//cerr << x << "/" << n << ' ' << labels[join_pair.first] << '=' << labels[join_pair.second] << 
+		//	' ' << next_node << '\t' << active_string() << endl << endl;
 		join_nodes (x, join_pair.first, join_pair.second, next_node);
 		next_node++;
 	}
@@ -129,7 +129,7 @@ int main() {
 		g[next_node].push_back(make_pair(i, 0));
 	}
 	double sum = 0;
-	cerr << (int)g[next_node].size() << endl;
+	//cerr << (int)g[next_node].size() << endl;
 	assert((int)g[next_node].size() == 3);
 	for (int x = 0; x < 3; x++) {
 		for (int y = 0; y < x; y++) {

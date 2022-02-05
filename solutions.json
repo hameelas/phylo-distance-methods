@@ -1,6 +1,7 @@
 {
+	"og-tree-copier.sh" : {"verdict": "model_solution"},
 	"fastnj.cpp" : {"verdict": "correct"},
-	"rapidnj.sh" : {"verdict": "model_solution"},
+	"rapidnj.sh" : {"verdict": "correct"},
 	"fastme.sh" : {"verdict": "correct"},
 	"clearcut.sh" : {"verdict": "correct"},
 	"quicktree.sh" : {"verdict": "correct"},

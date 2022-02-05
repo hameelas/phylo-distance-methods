@@ -14,6 +14,7 @@ sol_stderr="${SANDBOX}/${test_name}.err"
 
 export INPUT="${input}"
 export OUTPUT="${sol_stdout}"
+export BASE_DIR=${BASE_DIR}
 export THIRDPARTY="${BASE_DIR}/third-party"
 
 function run_solution {
